@@ -1,0 +1,96 @@
+<?xml version="1.0" ?>
+<!-- $Id: Daimler-Benz_LOF_6.xml,v 1.6 2010-03-25 17:29:54 anders Exp $ -->
+<!--
+
+  LZ-129 Hindenburg flight model for JSBSim.
+
+    Copyright (C) 2007 - 2009 Anders Gidenstam  (anders(at)gidenstam.org)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+  
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+  
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  
+-->
+<!--
+
+       Engine data from [Bentele, 1992]:
+
+       Manufacturer:        Daimler Bentz AG
+       Type:                LOF 6 (DB 602) (Diesel)
+       No. cylinders:       V 16
+       Max power:           1050 HP
+       Max rpm:             1500 rpm
+       Cruise power:        940 HP
+       Cruise rpm:          1350 rpm
+       Swept volume:        88 dm3
+       Weight (w/o cooler): 2200 kg
+       Power/weight ration: 2.8 kg/kWh
+       Fuel consumption (cruise): 0.225 kg/kWh
+       Piston diameter:     175 mm
+       Piston stroke:       230 mm
+       Compression ration:  1:16
+       Reduction gear:      2:1
+       Propeller diameter:  6.0 m
+       Propeller rpm (cruise): 625 rpm
+       
+       Notes: 2 input, 2 output valves. No supercharger. Could rotate
+              in either direction. Compressed air starter.
+
+       Fuel consumtion from [Dick, 1985, pp.123]:
+       (Is this total or per engine?)
+
+         RPM      Consumption (lbs/h)      MPH
+         ======================================
+         1450          1430               82.7
+         1350          1166               78.3
+         1250           880               69.3
+         1150           660               66.0
+
+         Oil consumption: 8.8 lbs/h per engine.
+
+  References :
+  ==========
+
+  - Eugen Bentele, "The Story of a Zeppelin Mechanic",
+    Zeppelin-Museum Friedrichshafen, 1992.
+
+  - Harold G. Dick and Douglas H. Robinson,
+    "The Golden Age of the Great Passenger Airships",
+    Simthsonian Institution Press, 1985.
+-->
+
+<piston_engine name="Daimler-Benz LOF 6 / DB 602">
+
+ <displacement unit="LTR">   88.0 </displacement>
+ <bore unit="M">            0.175 </bore>
+ <stroke unit="M">          0.230 </stroke>
+ <compression-ratio>         16.0 </compression-ratio> 
+ <cylinders>                 16.0 </cylinders>
+ <cycles>                    4.00 </cycles>
+
+ <minmp unit="INHG">          6.5 </minmp> <!-- Deprecated -->
+ <maxmp unit="INHG">         27.9 </maxmp>
+
+ <maxhp>                  1050.00 </maxhp>
+
+ <idlerpm>                 200.00 </idlerpm>
+ <maxrpm>                 1500.00 </maxrpm>
+
+ <!-- bsfc unit="LBS/HP*HR">     0.37 </bsfc -->
+ <!-- volumetric_efficiency>          <volumetric_efficiency -->
+ <sparkfaildrop>             0.00 </sparkfaildrop> <!-- This is a diesel! -->
+
+ <minthrottle> 0.1 </minthrottle>
+ <maxthrottle> 1.0 </maxthrottle>
+
+</piston_engine>

@@ -1,0 +1,351 @@
+<?xml version="1.0"?>
+<!-- $Id: LZ-129-set.xml,v 1.27 2011-01-09 20:54:23 anders Exp $ -->
+<!--
+  LZ-129 Hindenburg
+
+  Copyright (C) 2006 - 2011  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license version 2 or later.
+-->
+<PropertyList include="Systems/LZ-129-views.xml">
+
+ <sim>
+
+  <description>LZ 129 Hindenburg</description>
+  <author>Anders Gidenstam</author>
+  <status>Alpha</status>
+  <aircraft-version>$Id: LZ-129-set.xml,v 1.27 2011-01-09 20:54:23 anders Exp $</aircraft-version>
+
+  <flight-model>jsb</flight-model>
+  <aero>LZ-129</aero>
+
+  <presets>
+   <onground>true</onground>
+  </presets>
+
+  <model>
+   <path>Aircraft/LZ-129/Models/LZ-129.xml</path>
+  </model>
+
+  <systems>
+   <electrical>
+    <path/>
+   </electrical>
+  </systems>
+
+<!--
+  <instrumentation>
+   <path>Aircraft/Submarine_Scout/Systems/instrumentation.xml</path>
+  </instrumentation>
+-->
+
+  <sound>
+   <audible>true</audible>
+   <path>Aircraft/LZ-129/Sounds/LZ-129-sound.xml</path>
+  </sound>
+
+  <chase-distance-m type="double" archive="y">-400.0</chase-distance-m>
+
+  <!-- Aircraft specific help. -->
+  <help include="help.xml"/>
+
+  <ai>
+   <enabled type="bool">true</enabled>
+   <scenario n="100">KNUQ_airship_base</scenario>
+  </ai>
+
+  <menubar>
+   <default>
+    <menu n="3">
+     <enable type="bool">false</enable>
+    </menu>
+    <!-- menu n="100">
+     <label>LZ 129 Hindenburg</label>
+     <item>
+      <label>About</label>
+      <binding>
+       <command>nasal</command>
+       <script>LZ129.about()</script>
+      </binding>
+     </item>
+    </menu -->
+   </default>
+  </menubar>
+
+ </sim>
+
+ <nasal>
+  <LZ129>
+   <file>Aircraft/LZ-129/Systems/LZ-129.nas</file>
+  </LZ129>
+  <Instruments>
+   <file>Aircraft/LZ-129/Systems/electrical.nas</file>
+  </Instruments>
+<!--
+  <RAFmk9sextant>
+   <file>Aircraft/Instruments-3d/BubbleSextant/RAF_Mk9_bubble_sextant.nas</file>
+   <script>
+    var VIEW_NAME = "Star Observation View";
+    var STOWED = { position    : {x:-0.3, y: 0.0, z: -0.2},
+                   orientation : {heading : 320.0,
+                                  pitch   : -45.0,
+                                  roll    : 0.0}
+                 };
+   </script>
+  </RAFmk9sextant>
+-->
+ </nasal>
+
+ <payload include="Systems/LZ-129-payload.xml"/>
+
+ <input>
+  <keyboard>
+   <!-- Keyboard commands -->
+
+   <!-- Ballast commands ====================================== -->
+   <key n="87"> 
+    <name>W</name>
+    <desc>Perform on-ground weigh-off.</desc>
+    <binding> 
+     <command>nasal</command>
+     <script>
+      LZ129.weighoff();
+     </script>
+    </binding>
+   </key>
+   <key n="119">
+    <name>w</name>
+    <desc>Show current on-ground weight.</desc>
+    <binding>
+     <command>nasal</command>
+     <script>
+      LZ129.weightoff_report();
+     </script>
+    </binding>
+   </key>
+   <key n="100">
+    <name>d</name>
+    <desc>Drop 0.1% ballast aft</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+     <command>nasal</command>
+     <script>
+      LZ129.drop_ballast(LZ129.ballastAft, 0.001);
+     </script>
+    </binding>
+   </key>
+   <key n="68">
+    <name>D</name>
+    <desc>Drop 1% ballast aft</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+     <command>nasal</command>
+     <script>
+      LZ129.drop_ballast(LZ129.ballastAft, 0.01);
+     </script>
+    </binding>
+   </key>
+   <key n="97">
+    <name>a</name>
+    <desc>Drop 0.1% ballast fore</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+     <command>nasal</command>
+     <script>
+      LZ129.drop_ballast(LZ129.ballastFore, 0.001);
+     </script>
+    </binding>
+   </key>
+   <key n="65">
+    <name>A</name>
+    <desc>Drop 1% ballast fore</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+     <command>nasal</command>
+     <script>
+      LZ129.drop_ballast(LZ129.ballastFore, 0.01);
+     </script>
+    </binding>
+   </key>
+   <key n="83">
+    <name>S</name>
+    <desc>Drop 1% ballast center</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+     <command>nasal</command>
+     <script>
+      LZ129.drop_ballast(LZ129.ballastCenter, 0.01);
+     </script>
+    </binding>
+   </key>
+   
+   <!-- Gas cell commands ====================================== -->
+   <key n="70">
+    <name>F</name>
+    <desc>Open forward gas valves.</desc>
+    <binding>
+     <command>nasal</command>
+     <script>
+       gui.popupTip("Forward gas valves open!");
+       LZ129.setForwardGasValves(1.00);
+     </script>
+    </binding>
+   </key>
+   <key n="102">
+    <name>f</name>
+    <desc>Close forward gas valves.</desc>
+    <binding>
+     <command>nasal</command>
+     <script>
+       gui.popupTip("Forward gas valves closed!");
+       LZ129.setForwardGasValves(0.00);
+     </script>
+    </binding>
+   </key>
+
+   <key n="71">
+    <name>G</name>
+    <desc>Open aft gas valves.</desc>
+    <binding>
+     <command>nasal</command>
+     <script>
+       gui.popupTip("Aft gas valves open!");
+       LZ129.setAftGasValves(1.00);
+     </script>
+    </binding>
+   </key>
+   <key n="103">
+    <name>g</name>
+    <desc>Close aft gas valves.</desc>
+    <binding>
+     <command>nasal</command>
+     <script>
+       gui.popupTip("Aft gas valves closed!");
+       LZ129.setAftGasValves(0.00);
+     </script>
+    </binding>
+   </key>
+
+   <!-- Engine commands ======================================== -->
+   <key n="82">
+    <name>R</name>
+    <desc>Reverse direction of the selected engine(s).</desc>
+    <binding>
+     <command>nasal</command>
+     <script>
+      var sel = props.globals.getNode("/sim/input/selected").getChildren("engine");
+      foreach(var node; sel) {
+          if (node.getValue()) {
+              LZ129.switch_engine_direction(node.getIndex());
+          }
+      }
+     </script>
+    </binding>
+   </key>
+
+   <!-- Mooring commands ======================================= -->
+   <key n="85">
+    <name>U</name>
+    <desc>Drop guy lines and attach mooring wire.</desc>
+    <binding>
+     <command>nasal</command>
+     <script>
+       LZ129.ground_crew.attach_mooring_wire();
+     </script>
+    </binding>
+   </key>
+
+   <key n="89">
+    <name>Y</name>
+    <desc>Release mooring connection or wire.</desc>
+    <binding>
+     <command>nasal</command>
+     <script>
+       LZ129.ground_crew.release_mooring();
+     </script>
+    </binding>
+   </key>
+
+   <key n="117">
+    <name>u</name>
+    <desc>Winch in mooring wire.</desc>
+    <binding>
+     <command>nasal</command>
+     <script>
+       #LZ129.ground_crew.change_wire_length(-10);
+       var sp = getprop("/fdm/jsbsim/mooring/winch-speed-fps");
+       LZ129.ground_crew.set_winch_speed(sp - 0.5);
+     </script>
+    </binding>
+   </key>
+
+   <key n="121">
+    <name>y</name>
+    <desc>Winch out mooring wire.</desc>
+    <binding>
+     <command>nasal</command>
+     <script>
+       #LZ129.ground_crew.change_wire_length(10);
+       var sp = getprop("/fdm/jsbsim/mooring/winch-speed-fps");
+       LZ129.ground_crew.set_winch_speed(sp + 0.5);
+     </script>
+    </binding>
+   </key>
+
+   <!-- Crew commands ========================================== -->
+   <!-- key n="69">
+    <name>E</name>
+    <desc>Activate elevator coxswain.</desc>
+    <binding>
+     <command>nasal</command>
+     <script>
+       setprop("/fdm/jsbsim/ap/elevator-coxswain-active",
+               1);
+     </script>
+    </binding>
+   </key>
+
+   <key n="101">
+    <name>e</name>
+    <desc>Deativate elevator coxswain.</desc>
+    <binding>
+     <command>nasal</command>
+     <script>
+       setprop("/fdm/jsbsim/ap/elevator-coxswain-active",
+               0);
+     </script>
+    </binding>
+   </key -->
+
+   <!-- key n="82">
+    <name>R</name>
+    <desc>Activate rudder coxswain.</desc>
+    <binding>
+     <command>nasal</command>
+     <script>
+       setprop("/fdm/jsbsim/ap/rudder-coxswain-active",
+               1);
+     </script>
+    </binding>
+   </key>
+ 
+   <key n="114">
+    <name>r</name>
+    <desc>Deactivate rudder coxswain.</desc>
+    <binding>
+     <command>nasal</command>
+     <script>
+       setprop("/fdm/jsbsim/ap/rudder-coxswain-active",
+               0);
+     </script>
+    </binding>
+   </key -->
+
+  </keyboard>
+ </input>
+
+ <constants>
+  <zero>0.0</zero>
+  <one>1.0</one>
+ </constants>
+
+</PropertyList>

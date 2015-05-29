@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<runscript name="take-off test">
+  <!--
+    This run is for testing lighter-than-air aircraft.
+  -->
+
+  <use aircraft="LZ-129" initialize="sim/reset00"/>
+  <run start="0.0" end="2400" dt="0.00833333">
+
+<!--
+   <event name="Drop ballast Center">
+      <notify/>
+      <condition>
+        sim-time-sec >= 100.0
+      </condition>
+      <set name="inertia/ballast[2]/contents-slug"
+           value="1030.0"
+           action="FG_RAMP" tc ="60.0"/>
+    </event>
+
+   <event name="Drop ballast Forward">
+      <notify/>
+      <condition>
+        sim-time-sec >= 100.0
+      </condition>
+      <set name="inertia/ballast[0]/contents-slug"
+           value="870.0"
+           action="FG_RAMP" tc ="30.0"/>
+    </event>
+-->
+<!--
+    <event name="Elevator coxswain activate">
+      <description>Activate the elevator coxswain autopilot</description>
+      <notify/>
+      <condition>
+        sim-time-sec >= 100.0
+      </condition>
+      <set name="ap/elevator-coxswain-active"  value="1"/>
+      <set name="ap/pitch-setpoint-degrees" value="2"/>
+    </event>
+
+    <event name="Rudder coxswain activate">
+      <description>Activate the rudder coxswain autopilot</description>
+      <notify/>
+      <condition>
+        sim-time-sec >= 100.0
+      </condition>
+      <set name="ap/rudder-coxswain-active"   value="1"/>
+      <set name="ap/heading-setpoint-degrees" value="0"/>
+    </event>
+
+    <event name="engine 1 start">
+      <description>Start the engine 1</description>
+      <notify/>
+      <condition>
+        position/h-agl-ft >= 200
+      </condition>
+      <set name="fcs/throttle-cmd-norm"     value="0.5" action="FG_RAMP" tc ="0.5"/>
+      <set name="fcs/mixture-cmd-norm"      value="0.87" action="FG_RAMP" tc ="0.5"/>
+      <set name="propulsion/magneto_cmd"    value="3"/>
+      <set name="propulsion/starter_cmd"    value="1"/>
+    </event>
+
+    <event name="engine 2 start">
+      <description>Start the engine 2</description>
+      <notify/>
+      <condition>
+        position/h-agl-ft >= 207
+      </condition>
+      <set name="fcs/throttle-cmd-norm[1]"     value="0.55" action="FG_RAMP" tc ="0.5"/>
+      <set name="fcs/mixture-cmd-norm[1]"      value="0.87" action="FG_RAMP" tc ="0.5"/>
+      <set name="propulsion/magneto_cmd"       value="3"/>
+      <set name="propulsion/starter_cmd"       value="1"/>
+    </event>
+
+    <event name="engine 3 start">
+      <description>Start the engine 3</description>
+      <notify/>
+      <condition>
+        position/h-agl-ft >= 203
+      </condition>
+      <set name="fcs/throttle-cmd-norm[2]"     value="0.52" action="FG_RAMP" tc ="0.5"/>
+      <set name="fcs/mixture-cmd-norm[2]"      value="0.87" action="FG_RAMP" tc ="0.5"/>
+      <set name="propulsion/magneto_cmd"       value="3"/>
+      <set name="propulsion/starter_cmd"       value="1"/>
+    </event>
+
+    <event name="engine 4 start">
+      <description>Start the engine 4</description>
+      <notify/>
+      <condition>
+        position/h-agl-ft >= 203
+      </condition>
+      <set name="fcs/throttle-cmd-norm[3]"     value="0.57" action="FG_RAMP" tc ="0.5"/>
+      <set name="fcs/mixture-cmd-norm[3]"      value="0.87" action="FG_RAMP" tc ="0.5"/>
+      <set name="propulsion/magneto_cmd"       value="3"/>
+      <set name="propulsion/starter_cmd"       value="1"/>
+    </event>
+-->
+
+
+    <!-- event name="Course set">
+      <description>Set new heading setpoint</description>
+      <notify/>
+      <condition>
+        sim-time-sec >= 150.0
+      </condition>
+      <set name="ap/heading-setpoint-degrees" value="20"/>
+    </event -->
+
+    <!-- event name="Drop ballast">
+      <notify/>
+      <condition>
+        sim-time-sec >= 200.0
+      </condition>
+      <set name="inertia/ballast/contents-slug"
+           value="180.0" action="FG_RAMP" tc ="300"/>
+    </event -->
+
+    <event name="Time Notify" type="FG_DELTA" persistent="true">
+      <description>Output message at 100 second intervals</description>
+      <notify>
+        <property>velocities/vc-kts</property>
+        <property>position/h-agl-ft</property>
+        <property>inertia/ballast/contents-slug</property>
+        <property>inertia/ballast[2]/contents-slug</property>
+        <property>inertia/ballast[1]/contents-slug</property>
+        <property>inertia/ballast[3]/contents-slug</property>
+        <property>fcs/instrumentation/gas-cells/measured-pressure-psf[0]</property>
+        <property>fcs/instrumentation/gas-cells/measured-pressure-psf[1]</property>
+        <property>fcs/instrumentation/gas-cells/measured-pressure-psf[2]</property>
+        <property>fcs/instrumentation/gas-cells/measured-pressure-psf[3]</property>
+        <property>fcs/instrumentation/gas-cells/measured-pressure-psf[4]</property>
+        <property>fcs/instrumentation/gas-cells/measured-pressure-psf[5]</property>
+        <property>fcs/instrumentation/gas-cells/measured-pressure-psf[6]</property>
+        <property>fcs/instrumentation/gas-cells/measured-pressure-psf[7]</property>
+        <property>fcs/instrumentation/gas-cells/measured-pressure-psf[8]</property>
+        <property>fcs/instrumentation/gas-cells/measured-pressure-psf[9]</property>
+        <property>fcs/instrumentation/gas-cells/measured-pressure-psf[10]</property>
+        <property>fcs/instrumentation/gas-cells/measured-pressure-psf[11]</property>
+        <property>fcs/instrumentation/gas-cells/measured-pressure-psf[12]</property>
+        <property>fcs/instrumentation/gas-cells/measured-pressure-psf[13]</property>
+        <property>fcs/instrumentation/gas-cells/measured-pressure-psf[14]</property>
+        <property>fcs/instrumentation/gas-cells/measured-pressure-psf[15]</property>
+        <property>fcs/instrumentation/gas-cells/any-prall</property>
+      </notify>
+      <condition> sim-time-sec >= simulation/notify-time-trigger </condition>
+      <set name="simulation/notify-time-trigger" value="60" type="FG_DELTA"/>
+    </event>
+
+  </run>
+</runscript>

@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!-- $Id: help.xml,v 1.15 2008-03-29 14:15:00 anders Exp $ -->
+<!--
+  LZ-129 Hindenburg flight model for JSBSim with my LTA patch.
+
+  Copyright (C) 2006 - 2008  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license v2 or later.
+-->
+
+<PropertyList>
+
+ <title>LZ-129 Hindenburg</title>
+ <key>
+  <name>?</name>
+  <desc>Display this message.</desc>
+ </key>
+
+ <!-- Specific keys -->
+ <key>
+  <name>a</name>
+  <desc>Drop fore ballast in 0.1% decrements.</desc>
+ </key>
+ <key>
+  <name>A</name>
+  <desc>Drop fore ballast in 1% decrements.</desc>
+ </key>
+ <key>
+  <name>d</name>
+  <desc>Drop aft ballast in 0.1% decrements.</desc>
+ </key>
+ <key>
+  <name>D</name>
+  <desc>Drop aft ballast in 1% decrements.</desc>
+ </key>
+ <key>
+  <name>W</name>
+  <desc>Weigh-off to 10% of current weight by dropping ballast.
+   (Takes about 10 seconds and only works on ground.)
+  </desc>
+ </key>
+ <key>
+  <name>w</name>
+  <desc>Get current weight balance report. (Too precise!)</desc>
+ </key>
+ <key>
+  <name>F</name>
+  <desc>Open forward gas valves.</desc>
+ </key>
+ <key>
+  <name>f</name>
+  <desc>Close forward gas valves.</desc>
+ </key>
+ <key>
+  <name>G</name>
+  <desc>Open aft gas valves.</desc>
+ </key>
+ <key>
+  <name>g</name>
+  <desc>Close aft gas valves.</desc>
+ </key>
+ <key>
+  <name>R</name>
+  <desc>Switch the direction of the selected engines.
+   An engine must be stopped before changing direction.
+  </desc>
+ </key>
+ <key>
+  <name>Y</name>
+  <desc>Release mooring mast connection or wire.</desc>
+ </key>
+ <key>
+  <name>U</name>
+  <desc>Attach mooring wire. Only possible within 1500
+   feet of the mooring mast.
+  </desc>
+ </key>
+ <key>
+  <name>y</name>
+  <desc>Play out mooring wire.</desc>
+ </key>
+ <key>
+  <name>u</name>
+  <desc>Winch in mooring wire.</desc>
+ </key>
+
+<!--
+ <key>
+  <name>E/e</name>
+  <desc>Enable/disable elevator coxswain.</desc>
+ </key>
+ <key>
+  <name>R/r</name>
+  <desc>Enable/disable rudder coxswain.</desc>
+ </key>
+ <key>
+  <name>o</name>
+  <desc>Toggle bubble sextant view.</desc>
+ </key>
+-->
+ <text>
+ Handling instructions
+
+ Take-off
+   Check initial static condition (w).
+   Weight off (W) once or twice.
+   Drop some ballast fore (A) and aft (D) if needed.
+   Release the mooring (Y) when the ship is 1000 lbs or more light.
+   Start engines once the airship is 150 - 200 ft above ground.
+
+ Approach:
+   Slow and against the wind at 500 - 900 ft.
+   Adjust the static condition to be close (within ~1000lbs) of equilibrium. Gas: (F)(G) wait a second (f)(g). Ballast (A|a) (D|d).
+   Setting (some of) the engines to reverse (R) allows braking.
+
+ Landing (US Navy style):
+   Attach mooring wire (U) when 200 - 400 ft down-wind of the mast.
+   Forward speed should be very low at this point and the altitude about 400 ft.
+   Slowly winch in the mooring wire (u) until the ship is attached to the mooring mast.
+   Beware of oscillations.
+ </text>
+</PropertyList>
